@@ -15,4 +15,8 @@ like C:\_PythonJGE\Utility by default in the sample scripts or dependencies from
 folder placed in the folder where a python script uses it. And,
 'import sys' and  'sys.path.insert(0,r"C:\_PythonJGE\Utility")' in a script that
 uses the utility points to the folder where the utility scripts are place. Then for
-example "import affine as aff" makes use of a script.
+example "import affine as aff" makes use of a script. The 3D .obj creating scripts
+point to a folder "C:\_BigData\_3D\my_scenes" by defining
+BIGDATA = r"C:/_BigData/_3D/my_scenes/" in those scripts and that folder should be
+created or another and BIGDATA adjusted for change to save the created .obj files to
+that common folder.
