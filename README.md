@@ -12,4 +12,7 @@ Winpython27 and in its command shell: 'pip install opencv-python' and 'pip insta
 
 The utility folder pyjgeutil/_PythonJGE/Utility/ is assumed to be stored in a folder
 like C:\_PythonJGE\Utility by default in the sample scripts or dependencies from its
-folder placed in the folder where a python script uses it.
+folder placed in the folder where a python script uses it. And,
+'import sys' and  'sys.path.insert(0,r"C:\_PythonJGE\Utility")' in a script that
+uses the utility points to the folder where the utility scripts are place. Then for
+example "import affine as aff" makes use of a script.
