@@ -10,5 +10,5 @@ Requirements
 
 Winpython27 and in its command shell:
 
-pip install opencv-python
-pip install tripy
+'pip install opencv-python'
+'pip install tripy'
