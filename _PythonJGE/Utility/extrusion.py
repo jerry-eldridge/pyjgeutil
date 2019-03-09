@@ -141,7 +141,11 @@ def AddNormals(G):
          V1 = A-B
          V2 = C-B
          N = np.cross(V1,V2)
-         N = list(N/np.linalg.norm(N))
+         aa = np.linalg.norm(N)
+         epsilon = 1e-5
+         if abs(aa) < epsilon:
+              aa = 1.
+         N = list(N/aa)
          G['N'].append(N)
      return G
 
