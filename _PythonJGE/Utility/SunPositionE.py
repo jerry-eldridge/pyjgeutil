@@ -46,10 +46,6 @@ def SunPositionXYZ(lat,lon,hrs,dst=0):
 def EstimateDST():
     t1 = datetime.datetime.now()
     secs = time.mktime(t1.timetuple())
-    minute = 60
-    hour = 60*minute
-    day = 24*hour
-    secs = fmod(secs,day)
     secs1 = Seconds(t1.year,3,1) # make start of dst
     secs2 = Seconds(t1.year,11,1) # make end of dst
     if secs >= secs1 and secs <= secs2:
@@ -67,6 +63,7 @@ def CurrentSunPosition(lat,lon,dst=0):
     secs = fmod(secs,day)
     hrs = 1.0*secs/hour
     dst = EstimateDST()
+    print dst
     pt = SunPositionXYZ(lat,lon,hrs,dst)
     return pt
 
