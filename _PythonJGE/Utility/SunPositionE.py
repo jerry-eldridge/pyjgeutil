@@ -2,7 +2,7 @@ from math import sqrt,cos,sin,pi,tan,acos,asin,floor,fmod
 import datetime
 import time
 
-local_timezone = -6 # Jeanerette local time is -6 GMT. Set to location.
+local_timezone = -6 # local time is -6 GMT. Set to location.
 luminous_efficacy_sun = 93
 
 # http://www.pveducation.org/pvcdrom/properties-of-sunlight/suns-position
