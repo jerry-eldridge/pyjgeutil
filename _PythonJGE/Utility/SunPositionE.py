@@ -14,9 +14,9 @@ AU = 149597871.0
 seasons = [(3,20),(6,21),(9,22),(12,21)] #equinox, solstice,equinox,solstice
 season_names = ["winter","spring","summer","autumn"]
 
-def SunPositionXYZdays(lat,lon,days,hrs):
+def SunPositionXYZdays(lat,lon,days,hrs,dst=0):
     local_timezone = TimeZoneEstimate(lat,lon)
-    local_time = hrs
+    local_time = hrs + local_timezone + dst
     zenith = GetZenith(days,local_time,lat,lon)
     AM = Airmass(zenith)
     lux = Lux(zenith)
@@ -32,14 +32,33 @@ def SunPositionXYZdays(lat,lon,days,hrs):
     z = r*cos(theta)
     return [x,y,z]
 
-def SunPositionXYZ(lat,lon,hrs):
+def SunPositionXYZ(lat,lon,hrs,dst=0):
     year = datetime.date.today().year
     month = datetime.date.today().month
     day = datetime.date.today().day
     days = DayOfYear(year,month,day)
-    return SunPositionXYZdays(lat,lon,days,hrs)
+    return SunPositionXYZdays(lat,lon,days,hrs,dst)
 
-def CurrentSunPosition(lat,lon):
+# This is only approximate as Daylight Savings Time at
+# 2 am on the second Sunday in March and reverts to
+# standard time on first Sunday in November. I set
+# it to noon, or midnight, March 1 and Nov 1.
+def EstimateDST():
+    t1 = datetime.datetime.now()
+    secs = time.mktime(t1.timetuple())
+    minute = 60
+    hour = 60*minute
+    day = 24*hour
+    secs = fmod(secs,day)
+    secs1 = Seconds(t1.year,3,1) # make start of dst
+    secs2 = Seconds(t1.year,11,1) # make end of dst
+    if secs >= secs1 and secs <= secs2:
+        dst = 1
+    else:
+        dst = 0
+    return dst
+
+def CurrentSunPosition(lat,lon,dst=0):
     t1 = datetime.datetime.now()
     secs = time.mktime(t1.timetuple())
     minute = 60
@@ -47,7 +66,8 @@ def CurrentSunPosition(lat,lon):
     day = 24*hour
     secs = fmod(secs,day)
     hrs = 1.0*secs/hour
-    pt = SunPositionXYZ(lat,lon,hrs)
+    dst = EstimateDST()
+    pt = SunPositionXYZ(lat,lon,hrs,dst)
     return pt
 
 def Seconds(year,month,day, hour=0, minute=0, second=0):
