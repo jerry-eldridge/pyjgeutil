@@ -63,7 +63,6 @@ def CurrentSunPosition(lat,lon,dst=0):
     secs = fmod(secs,day)
     hrs = 1.0*secs/hour
     dst = EstimateDST()
-    print dst
     pt = SunPositionXYZ(lat,lon,hrs,dst)
     return pt
 
