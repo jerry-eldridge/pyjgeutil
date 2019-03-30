@@ -11,10 +11,10 @@ from copy import deepcopy
 from math import pi,cos,sin
 
 # Note: this helix has a implicit twist
-def Helix0(a,b,m=10,n=40, N = 1):
+def Helix0(r,a,b,m=10,n=40, N = 1):
     C = [0,0,0]
     H1 = gra.Cn(m)
-    H1 = gra.CreateCircleGeometry(H1,C[0],C[1],C[2],a)
+    H1 = gra.CreateCircleGeometry(H1,C[0],C[1],C[2],r)
     t = 0
     dt = 2*pi/n
     path = []
@@ -29,8 +29,8 @@ def Helix0(a,b,m=10,n=40, N = 1):
     H = ext.Extrusion(H1,path,bcap=True,ecap=True,closed=True)
     return H
 
-def Helix(a,b,t,q,s,m=10,n=40, N = 1):
-    H = Helix0(a,b,m=m,n=n, N=N)
+def Helix(r,a,b,t,q,s,m=10,n=40, N = 1):
+    H = Helix0(r,a,b,m=m,n=n, N=N)
     pts = H['pts']
     C = aff.Center(pts)
     pts = aff.Translate(pts,-C[0],-C[1],-C[2],align=False)

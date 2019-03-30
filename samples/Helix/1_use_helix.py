@@ -18,7 +18,8 @@ G['pts'] = []
 Gs = []
 
 # Ellipsoid Object
-a = 10 # radius, must be big enough
+r = 10 # radius of cross section
+a = 10 # radius of helix, must be big enough
 b = 5*a # pitch
 t = [-80.,0.,50.]
 degrees = 0
@@ -27,7 +28,7 @@ q = aff.HH.rotation_quaternion(degrees,axis[0],axis[1],axis[2])
 scale = 1.
 s = [scale,scale,scale] # the same scale as previous for caps
 # n is length
-H0 = he.Helix(a,b,t,q,s,m=10,n=20, N = 3)
+H0 = he.Helix(r,a,b,t,q,s,m=10,n=20, N = 3)
 Gs = ext.Append(Gs,H0)
 G = ext.GraphUnionS(G,H0)
 #################################
