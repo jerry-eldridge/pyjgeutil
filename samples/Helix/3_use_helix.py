@@ -20,7 +20,7 @@ Gs = []
 # Ellipsoid Object
 r = 10 # radius of cross section
 a = 50 # radius of helix, must be big enough
-b = 10 # pitch
+b = 3.14+0.5 # pitch
 t = [-80.,0.,50.]
 degrees = 0
 axis = [0,1,0]
@@ -34,8 +34,8 @@ G = ext.GraphUnionS(G,H0)
 #################################
 
 # Save Scene 1
-ext.Graphs2OBJ(BIGDATA+"Helix2.obj",Gs,"scene")
+ext.Graphs2OBJ(BIGDATA+"Helix3.obj",Gs,"scene")
 
 # Double-Click on OBJ file
 import os
-os.system(BIGDATA+"Helix2.obj")
+os.system(BIGDATA+"Helix3.obj")
